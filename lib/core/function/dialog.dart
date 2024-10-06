@@ -16,14 +16,14 @@ dialog(BuildContext context) {
         backgroundColor: ColorsApp.white,
         actions: [
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(color: ColorsApp.greythree, borderRadius: BorderRadius.circular(6)),
             alignment: Alignment.center,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.all(3),
+                  padding: const EdgeInsets.all(3),
                   decoration: BoxDecoration(color: ColorsApp.white, borderRadius: BorderRadius.circular(6)),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -45,7 +45,7 @@ dialog(BuildContext context) {
                   height: 10,
                 ),
                 Container(
-                                    padding: EdgeInsets.all(3),
+                                    padding: const EdgeInsets.all(3),
 
                   decoration: BoxDecoration(color: ColorsApp.white, borderRadius: BorderRadius.circular(6)),
                   child: Column(

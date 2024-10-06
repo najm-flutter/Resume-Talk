@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:chat/core/constant/api_key.dart';
 import 'package:chat/core/constant/links_app.dart';
 import 'package:chat/core/function/note_dialog.dart';
 import 'package:chat/data/data_source/static/static_strings.dart';
 import 'package:chat/data/model/message_model.dart';
 import 'package:clipboard/clipboard.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -44,34 +44,36 @@ final RegExp regExp = RegExp(r'(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))(
 
   ///////// assistantsTools ////// api
 
-  late LinksApp linksApp  ;
+late LinksApp linksApp;
 
-  // gemini 
-   late final GenerativeModel _model;
-  late final ChatSession _chat;
+// gemini 
+late final GenerativeModel _model;
+late final ChatSession _chat;
 
-  @override
-  void onInit() {
-    linksApp = LinksApp() ;
-    textcntorol = TextEditingController();
-    shownote();
-    super.onInit();
-    //gemini 
-     _model = GenerativeModel(
-      generationConfig: GenerationConfig(temperature: 0.9, topK: 1, topP: 1.0, maxOutputTokens: 1000),
-      model: 'gemini-1.5-flash-latest',
-      apiKey: geminiKey.replaceAll(RegExp(r'atc5BejYufSdxDRw'), "atc5B0jYuDSgnDRw"),
-    );
-    _chat = _model.startChat(history: StaticData.patrsChat);
-  }
+ String geminiKey = 'your_actual_api_key_here';
 
-  @override
-  shownote() {
-    Timer(const Duration(seconds: 2), () {
-      noteDialog();
-    });
-  }
- 
+@override
+void onInit() {
+  linksApp = LinksApp();
+  textcntorol = TextEditingController();
+  shownote();
+  super.onInit();
+  // gemini
+  _model = GenerativeModel(
+    generationConfig: GenerationConfig(temperature: 0.9, topK: 1, topP: 1.0, maxOutputTokens: 1000),
+    model: 'gemini-1.5-flash-latest',
+    apiKey: geminiKey.replaceAll(RegExp(r'atc5BejYufSdxDRw'), "atc5B0jYuDSgnDRw"),
+  );
+  _chat = _model.startChat(history: StaticData.patrsChat);
+}
+
+@override
+void shownote() {
+  Timer(const Duration(seconds: 2), () {
+    noteDialog();
+  });
+}
+
   
 
   @override
@@ -81,7 +83,9 @@ final RegExp regExp = RegExp(r'(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))(
      var respons = await _chat.sendMessage(Content.text("$message : قم بالرد على السؤال من النموذج المرفق")) ;
      onGetData(respons.text) ;
     } catch (e) {
-      print(e.toString()) ;
+      if (kDebugMode) {
+        print(e.toString()) ;
+      }
       onGetDataError(e.toString()) ;
     }
   }
@@ -116,7 +120,9 @@ final RegExp regExp = RegExp(r'(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))(
 
   @override
   onGetData(String? val) async {
-    print(val);
+    if (kDebugMode) {
+      print(val);
+    }
     massege.add(MessageModel(nameSender: "bot", message: val.toString()));
     scrollController.addListener(() {});
 
