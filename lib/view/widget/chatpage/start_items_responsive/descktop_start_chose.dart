@@ -40,7 +40,7 @@ class DescktopStartChose extends GetView<ChatPageCoIm> {
                   children: [
                     Text(
                       StaticData.startItemsModel[index].title,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorsApp.black.withValues(alpha: 0.8)),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: ColorsApp.black.withOpacity( 0.8)),
                     ),
                     Text(
                       StaticData.startItemsModel[index].body,

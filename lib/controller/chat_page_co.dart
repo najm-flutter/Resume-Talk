@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:chat/core/constant/links_app.dart';
 import 'package:chat/core/function/note_dialog.dart';
+import 'package:chat/data/data_source/static/prompts.dart';
 import 'package:chat/data/data_source/static/static_strings.dart';
 import 'package:chat/data/model/message_model.dart';
 import 'package:clipboard/clipboard.dart';
@@ -50,7 +51,7 @@ late LinksApp linksApp;
 late final GenerativeModel _model;
 late final ChatSession _chat;
 
- String geminiKey = 'your_actual_api_key_here';
+ String geminiKey = 'yor api key' ;
 
 @override
 void onInit() {
@@ -60,6 +61,7 @@ void onInit() {
   super.onInit();
   // gemini
   _model = GenerativeModel(
+    systemInstruction: Content.text(dataai),
     generationConfig: GenerationConfig(temperature: 0.9, topK: 1, topP: 1.0, maxOutputTokens: 1000),
     model: 'gemini-1.5-flash-latest',
     apiKey: geminiKey.replaceAll(RegExp(r'atc5BejYufSdxDRw'), "atc5B0jYuDSgnDRw"),
@@ -142,7 +144,6 @@ void shownote() {
 
   @override
   onSendData() {
-    // question.isNotEmpty ? massege.add({'name': 'عميلنا العزيز', 'msg': question}) : null;
     question.isNotEmpty ? massege.add(MessageModel(nameSender: 'user', message: question)) : null;
     wait = true;
     send = false;

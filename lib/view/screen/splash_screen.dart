@@ -76,7 +76,7 @@ class SplashScreen extends StatelessWidget {
               '@2024-2025',
               style: TextStyle(
                 fontSize: 12,
-                color: ColorsApp.premary.withValues(alpha: 0.5),
+                color: ColorsApp.premary.withOpacity(0.5),
               ),
               textAlign: TextAlign.center,
             ),

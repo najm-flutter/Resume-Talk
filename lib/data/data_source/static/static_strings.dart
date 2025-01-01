@@ -1,6 +1,5 @@
 import 'package:chat/core/constant/image_assets.dart';
 import 'package:chat/core/constant/links_app.dart';
-import 'package:chat/data/data_source/static/prompts.dart';
 import 'package:chat/data/model/social_model.dart';
 import 'package:chat/data/model/start_items_model.dart';
 import 'package:get/get.dart';
@@ -8,7 +7,7 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 
 class StaticData {
   static List<Content> patrsChat = [
-    Content.text(dataai),
+    Content.text("مرحبا"),
     Content.model([TextPart(" مرحبًا بكم  أنا مساعد نجم الدين الافتراضي")]),
     Content.text(' كم طول ملعب كرة القدم'),
     Content.model([

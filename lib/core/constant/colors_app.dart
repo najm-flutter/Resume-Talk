@@ -14,7 +14,7 @@ class ColorsApp{
         static Color gradientdown = const Color.fromARGB(255, 0, 0, 158);
       static Color titlecolor = const Color.fromARGB(255, 42, 42, 94);
   /////الوان ال drawer//👇
-  static Color grey =  Colors.grey.withValues(alpha:0.05);
+  static Color grey =  Colors.grey.withOpacity(0.05);
   static Color greytow =  Colors.grey;
   static Color greythree =  const Color.fromARGB(255, 238, 241, 255);
   //الوان صفة ال chatpage//{ 
