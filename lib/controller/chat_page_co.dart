@@ -126,15 +126,8 @@ void shownote() {
       print(val);
     }
     massege.add(MessageModel(nameSender: "bot", message: val.toString()));
-    scrollController.addListener(() {});
 
-    massege.length > 1
-        ? scrollController.animateTo(
-            scrollController.position.maxScrollExtent + 60,
-            duration: const Duration(seconds: 1),
-            curve: Curves.fastOutSlowIn,
-          )
-        : null;
+   _scrollDown() ;
     update();
     wait = false;
     send = true;
@@ -162,6 +155,18 @@ void shownote() {
     textcntorol.clear();
     update();
   }
+  void _scrollDown() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => scrollController.animateTo(
+        scrollController.position.maxScrollExtent,
+        duration: const Duration(
+          milliseconds: 750,
+        ),
+        curve: Curves.easeOutCirc,
+      ),
+    );
+  }
+
 
 
 }
